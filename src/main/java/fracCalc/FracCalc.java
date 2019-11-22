@@ -9,7 +9,7 @@ import java.util.*;
 public class FracCalc {
 
 	public static void main(String[] args) {
-		String str = produceAnswer(userInput());
+		String str = produceAnswer("5_3/4 + 6_5/8");
 		System.out.println(str);
 		// TODO: Read the input from the user and call produceAnswer with an equation
 
@@ -39,21 +39,23 @@ public class FracCalc {
 		int space = i.indexOf(" ");
 		String str = "";
 		if (Character.isWhitespace(i.charAt(space + 2))) {
-			char operator = i.charAt(space + 1);
-			str = (i.substring(space + 3, i.length()));
-//			if (str.indexOf("/") != -1) {
-//				int frac = str.indexOf("/");
-//				double firstFraction = Double.parseDouble(i.substring(0, operator));
-//				double SecondFraction = Double.parseDouble(i.substring(operator + 1, str.length()));
-//				if (str.indexOf("_") != -1) {
-//					int dash = str.indexOf("_");
-//					char wholeNumber = str.charAt(dash - 1);
-//					double num = Double.parseDouble(str.substring(0, frac));
-//					double denom = Double.parseDouble(str.substring(frac + 1, str.length()));
-//					double finalValue = wholeNumber + num + denom;
-//				}
-//
-//			}
+			str = (i.substring(space + 3));
+			if (str.indexOf("/") != -1) {
+				int frac = str.indexOf("/");
+				if (str.indexOf("_") != -1) {
+					int dash = str.indexOf("_");
+					String wholeNumber = str.substring(0, dash);
+					String num = str.substring(dash + 1, frac);
+					String denom = str.substring(frac + 1);
+					return "whole:" + wholeNumber + " numerator:" + num + " denominator:" + denom;
+				} else {
+					return "whole:0 numerator:" + str.substring(0, str.indexOf('/')) + " denominator:"
+							+ str.substring(str.indexOf('/') + 1);
+				}
+
+			} else {
+				return "whole:" + str + " numerator:0 denominator:1";
+			}
 		}
 
 		// "1/2 + 3/4"
