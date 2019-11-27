@@ -9,18 +9,22 @@ import java.util.*;
 public class FracCalc {
 
 	public static void main(String[] args) {
-		String str = produceAnswer("5_3/4 + 6_5/8");
-		System.out.println(str);
+		//String str = produceAnswer(userInput());
+		Scanner userInput = new Scanner(System.in);
+		
+		boolean cho =true;
+		while (cho != false){
+			String x = userInput.nextLine();
+			String str = produceAnswer(x);
+			System.out.println(str);
+			if (x.indexOf("quit") != -1){
+				cho= false;
+				userInput.close();
+				
+			}
+		}
 		// TODO: Read the input from the user and call produceAnswer with an equation
 
-	}
-
-	public static String userInput() {
-		Scanner userInput = new Scanner(System.in);
-		System.out.println("Type equation below:");
-		String x = userInput.nextLine();
-		userInput.close();
-		return x;
 	}
 
 	// ** IMPORTANT ** DO NOT DELETE THIS FUNCTION. This function will be used to
